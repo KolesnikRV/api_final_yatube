@@ -12,7 +12,7 @@ class PostAdmin(admin.ModelAdmin):
 
 class GroupAdmin(admin.ModelAdmin):
     list_display = ('pk', 'title', 'description')
-    search_fields = ('title',)
+    search_fields = ('description',)
     list_filter = ('title',)
     empty_value_display = '-пусто-'
 
@@ -27,7 +27,6 @@ class CommentAdmin(admin.ModelAdmin):
 class FollowAdmin(admin.ModelAdmin):
     list_display = ('pk', 'user', 'following')
     search_fields = ('user',)
-    list_filter = ('user',)
     empty_value_display = '-пусто-'
 
 
