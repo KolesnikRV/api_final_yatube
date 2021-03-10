@@ -2,7 +2,7 @@ from rest_framework import viewsets, permissions, filters
 from rest_framework.generics import get_object_or_404
 from django_filters.rest_framework import DjangoFilterBackend
 
-from .models import Post, Group, User
+from .models import Post, Group
 from .serializers import (PostSerializer, CommentSerializer,
                           FollowSerializer, GroupSerializer)
 from .permissions import IsOwnerOrReadOnly
@@ -45,8 +45,7 @@ class FollowViewSet(ListCreateModelViewSet):
         serializer.save(user=self.request.user)
 
     def get_queryset(self):
-        user = get_object_or_404(User, username=self.request.user)
-        return user.following.all()
+        return self.request.user.following.all()
 
 
 class GroupViewSet(ListCreateModelViewSet):
